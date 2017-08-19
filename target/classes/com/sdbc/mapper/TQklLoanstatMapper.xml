@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sdbc.mapper.TQklLoanstatMapper" >
+  <resultMap id="BaseResultMap" type="com.sdbc.pojo.TQklLoanstat" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="save_date" property="saveDate" jdbcType="DATE" />
+    <result column="save_time" property="saveTime" jdbcType="TIME" />
+    <result column="interval" property="interval" jdbcType="INTEGER" />
+    <result column="loan_num" property="loanNum" jdbcType="INTEGER" />
+    <result column="loan_sum" property="loanSum" jdbcType="DOUBLE" />
+    <result column="js_loan_sum" property="jsLoanSum" jdbcType="DOUBLE" />
+    <result column="co_loan_sum" property="coLoanSum" jdbcType="DOUBLE" />
+    <result column="register_num" property="registerNum" jdbcType="INTEGER" />
+    <result column="error_num" property="errorNum" jdbcType="INTEGER" />
+    <result column="error_sum" property="errorSum" jdbcType="DOUBLE" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, channel, type, save_date, save_time, interval, loan_num, loan_sum, js_loan_sum, 
+    co_loan_sum, register_num, error_num, error_sum, note
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_qkl_loanstat
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_qkl_loanstat
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdbc.pojo.TQklLoanstat" >
+    insert into t_qkl_loanstat (id, channel, type, 
+      save_date, save_time, interval, 
+      loan_num, loan_sum, js_loan_sum, 
+      co_loan_sum, register_num, error_num, 
+      error_sum, note)
+    values (#{id,jdbcType=INTEGER}, #{channel,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{saveDate,jdbcType=DATE}, #{saveTime,jdbcType=TIME}, #{interval,jdbcType=INTEGER}, 
+      #{loanNum,jdbcType=INTEGER}, #{loanSum,jdbcType=DOUBLE}, #{jsLoanSum,jdbcType=DOUBLE}, 
+      #{coLoanSum,jdbcType=DOUBLE}, #{registerNum,jdbcType=INTEGER}, #{errorNum,jdbcType=INTEGER}, 
+      #{errorSum,jdbcType=DOUBLE}, #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdbc.pojo.TQklLoanstat" >
+    insert into t_qkl_loanstat
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="saveDate != null" >
+        save_date,
+      </if>
+      <if test="saveTime != null" >
+        save_time,
+      </if>
+      <if test="interval != null" >
+        interval,
+      </if>
+      <if test="loanNum != null" >
+        loan_num,
+      </if>
+      <if test="loanSum != null" >
+        loan_sum,
+      </if>
+      <if test="jsLoanSum != null" >
+        js_loan_sum,
+      </if>
+      <if test="coLoanSum != null" >
+        co_loan_sum,
+      </if>
+      <if test="registerNum != null" >
+        register_num,
+      </if>
+      <if test="errorNum != null" >
+        error_num,
+      </if>
+      <if test="errorSum != null" >
+        error_sum,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="saveDate != null" >
+        #{saveDate,jdbcType=DATE},
+      </if>
+      <if test="saveTime != null" >
+        #{saveTime,jdbcType=TIME},
+      </if>
+      <if test="interval != null" >
+        #{interval,jdbcType=INTEGER},
+      </if>
+      <if test="loanNum != null" >
+        #{loanNum,jdbcType=INTEGER},
+      </if>
+      <if test="loanSum != null" >
+        #{loanSum,jdbcType=DOUBLE},
+      </if>
+      <if test="jsLoanSum != null" >
+        #{jsLoanSum,jdbcType=DOUBLE},
+      </if>
+      <if test="coLoanSum != null" >
+        #{coLoanSum,jdbcType=DOUBLE},
+      </if>
+      <if test="registerNum != null" >
+        #{registerNum,jdbcType=INTEGER},
+      </if>
+      <if test="errorNum != null" >
+        #{errorNum,jdbcType=INTEGER},
+      </if>
+      <if test="errorSum != null" >
+        #{errorSum,jdbcType=DOUBLE},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdbc.pojo.TQklLoanstat" >
+    update t_qkl_loanstat
+    <set >
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="saveDate != null" >
+        save_date = #{saveDate,jdbcType=DATE},
+      </if>
+      <if test="saveTime != null" >
+        save_time = #{saveTime,jdbcType=TIME},
+      </if>
+      <if test="interval != null" >
+        interval = #{interval,jdbcType=INTEGER},
+      </if>
+      <if test="loanNum != null" >
+        loan_num = #{loanNum,jdbcType=INTEGER},
+      </if>
+      <if test="loanSum != null" >
+        loan_sum = #{loanSum,jdbcType=DOUBLE},
+      </if>
+      <if test="jsLoanSum != null" >
+        js_loan_sum = #{jsLoanSum,jdbcType=DOUBLE},
+      </if>
+      <if test="coLoanSum != null" >
+        co_loan_sum = #{coLoanSum,jdbcType=DOUBLE},
+      </if>
+      <if test="registerNum != null" >
+        register_num = #{registerNum,jdbcType=INTEGER},
+      </if>
+      <if test="errorNum != null" >
+        error_num = #{errorNum,jdbcType=INTEGER},
+      </if>
+      <if test="errorSum != null" >
+        error_sum = #{errorSum,jdbcType=DOUBLE},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdbc.pojo.TQklLoanstat" >
+    update t_qkl_loanstat
+    set channel = #{channel,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      save_date = #{saveDate,jdbcType=DATE},
+      save_time = #{saveTime,jdbcType=TIME},
+      interval = #{interval,jdbcType=INTEGER},
+      loan_num = #{loanNum,jdbcType=INTEGER},
+      loan_sum = #{loanSum,jdbcType=DOUBLE},
+      js_loan_sum = #{jsLoanSum,jdbcType=DOUBLE},
+      co_loan_sum = #{coLoanSum,jdbcType=DOUBLE},
+      register_num = #{registerNum,jdbcType=INTEGER},
+      error_num = #{errorNum,jdbcType=INTEGER},
+      error_sum = #{errorSum,jdbcType=DOUBLE},
+      note = #{note,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

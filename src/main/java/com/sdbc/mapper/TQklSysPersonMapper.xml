@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sdbc.dao.UserManageDao">
+	<resultMap id="BaseResultMap" type="com.sdbc.pojo.TQklSysPerson">
+		<result column="userid" jdbcType="INTEGER" property="userid" />
+		<result column="username" jdbcType="VARCHAR" property="username" />
+		<result column="typeid" jdbcType="INTEGER" property="typeid" />
+		<result column="status" jdbcType="INTEGER" property="status" />
+		<result column="userpasswd" jdbcType="VARCHAR" property="userpasswd" />
+		<result column="bank_id" jdbcType="VARCHAR" property="bank_id" />
+		<result column="typename" jdbcType="VARCHAR" property="typename" />
+	</resultMap>
+	<select id="selectUserByName" parameterType="String" resultMap="BaseResultMap">
+		SELECT * FROM t_qkl_sys_person WHERE username = #{username}
+	</select>
+	<select id="selectById" parameterType="String" resultMap="BaseResultMap">
+		SELECT * FROM t_qkl_sys_person WHERE userid = #{id}
+	</select>
+	<select id="userlist" parameterType="String" resultMap="BaseResultMap">
+		SELECT
+		t_qkl_sys_person.*,
+		t_qkl_sys_persontype.typename
+		FROM
+		t_qkl_sys_person
+		left JOIN t_qkl_sys_persontype ON t_qkl_sys_person.typeid=
+		t_qkl_sys_persontype.typeid
+
+	</select>
+	<select id="userlist_query" parameterType="com.sdbc.pojo.TQklSysPerson"
+		resultMap="BaseResultMap">
+		SELECT *
+		FROM t_qkl_sys_person WHERE username =
+		#{username,jdbcType=VARCHAR} and WHERE status =
+		#{status,jdbcType=INTEGER}
+	</select>
+
+	<select id="userTypeId" parameterType="String" resultMap="BaseResultMap">
+		SELECT
+		* FROM t_qkl_sys_person WHERE username = #{username}
+	</select>
+	<insert id="insertUser" parameterType="com.sdbc.pojo.TQklSysPerson">
+		<selectKey resultType="int" keyProperty="userid" order="BEFORE">
+   		select user_seq.nextVal
+   		from dual
+  		</selectKey>
+		insert into
+		t_qkl_sys_person (userid, username, typeid,
+		status, userpasswd, bank_id
+		)
+		values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
+		#{typeid,jdbcType=INTEGER},
+		#{status,jdbcType=INTEGER},
+		#{userpasswd,jdbcType=VARCHAR}, #{bank_id,jdbcType=VARCHAR}
+		)
+	</insert>
+
+	<select id="unique_username" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		select count(*) from t_qkl_sys_person a where
+		a.username=#{username}
+	</select>
+
+	<delete id="deleteUser" parameterType="java.lang.Integer">
+		delete from
+		t_qkl_sys_person
+		where userid = #{userid,jdbcType=INTEGER}
+	</delete>
+	<update id="changStatus" parameterType="com.sdbc.pojo.TQklSysPerson">
+		update t_qkl_sys_person
+		set status = #{status,jdbcType=INTEGER}
+		where userid =
+		#{userid,jdbcType=INTEGER}
+	</update>
+		<update id="modifyUserRole" parameterType="com.sdbc.pojo.TQklSysPerson">
+		update t_qkl_sys_person
+		set typeid = #{typeid,jdbcType=INTEGER}
+		where userid =
+		#{userid,jdbcType=INTEGER}
+	</update>
+	<update id="resetUser" parameterType="com.sdbc.pojo.TQklSysPerson">
+		update t_qkl_sys_person
+		set userpasswd = #{userpasswd,jdbcType=VARCHAR}
+		where userid = #{userid,jdbcType=INTEGER}
+	</update>
+</mapper>

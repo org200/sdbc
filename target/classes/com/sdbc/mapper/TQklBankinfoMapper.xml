@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sdbc.dao.AgencyManageDao">
+	<resultMap id="BaseResultMap" type="com.sdbc.pojo.TQklBankinfo">
+		<result column="id" property="id" jdbcType="INTEGER" />
+		<result column="bank_id" property="bankId" jdbcType="INTEGER" />
+		<result column="bank_name" property="bankName" jdbcType="VARCHAR" />
+		<result column="bank_ip" property="bankIp" jdbcType="VARCHAR" />
+		<result column="conn_name" property="connName" jdbcType="VARCHAR" />
+		<result column="conn_phone" property="connPhone" jdbcType="VARCHAR" />
+		<result column="key_id" property="keyId" jdbcType="VARCHAR" />
+		<result column="cert_id" property="certId" jdbcType="VARCHAR" />
+		<result column="pub_key" property="pubKey" jdbcType="VARCHAR" />
+		<result column="pri_key" property="priKey" jdbcType="VARCHAR" />
+		<result column="reg_time" property="regTime" jdbcType="TIMESTAMP" />
+		<result column="note" property="note" jdbcType="VARCHAR" />
+	</resultMap>
+	<select id="agencylist" parameterType="String" resultMap="BaseResultMap">
+		SELECT
+		*
+		FROM t_qkl_bankinfo
+	</select>
+
+	<delete id="deleteAgency" parameterType="java.lang.Integer">
+		delete from t_qkl_bankinfo
+		where id = #{id,jdbcType=INTEGER}
+	</delete>
+	<select id="unique_bank_id" parameterType="java.lang.Integer"
+		resultType="java.lang.Integer">
+		select count(*) from t_qkl_bankinfo a where
+		a.bank_id=#{bank_id}
+	</select>
+	<insert id="insertAgency" parameterType="com.sdbc.pojo.TQklBankinfo">
+		insert into t_qkl_bankinfo (id, bank_id, bank_name,
+		bank_ip, conn_name, conn_phone,
+		key_id, cert_id, pub_key,
+		pri_key, reg_time, note
+		)
+		values (#{id,jdbcType=INTEGER}, #{bankId,jdbcType=INTEGER},
+		#{bankName,jdbcType=VARCHAR},
+		#{bankIp,jdbcType=VARCHAR}, #{connName,jdbcType=VARCHAR}, #{connPhone,jdbcType=VARCHAR},
+		#{keyId,jdbcType=VARCHAR}, #{certId,jdbcType=VARCHAR},
+		#{pubKey,jdbcType=VARCHAR},
+		#{priKey,jdbcType=VARCHAR}, #{regTime,jdbcType=TIMESTAMP}, #{note,jdbcType=VARCHAR}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="com.sdbc.pojo.TQklBankinfo">
+		insert into t_qkl_bankinfo
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				id,
+			</if>
+			<if test="bankId != null">
+				bank_id,
+			</if>
+			<if test="bankName != null">
+				bank_name,
+			</if>
+			<if test="bankIp != null">
+				bank_ip,
+			</if>
+			<if test="connName != null">
+				conn_name,
+			</if>
+			<if test="connPhone != null">
+				conn_phone,
+			</if>
+			<if test="keyId != null">
+				key_id,
+			</if>
+			<if test="certId != null">
+				cert_id,
+			</if>
+			<if test="pubKey != null">
+				pub_key,
+			</if>
+			<if test="priKey != null">
+				pri_key,
+			</if>
+			<if test="regTime != null">
+				reg_time,
+			</if>
+			<if test="note != null">
+				note,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=INTEGER},
+			</if>
+			<if test="bankId != null">
+				#{bankId,jdbcType=INTEGER},
+			</if>
+			<if test="bankName != null">
+				#{bankName,jdbcType=VARCHAR},
+			</if>
+			<if test="bankIp != null">
+				#{bankIp,jdbcType=VARCHAR},
+			</if>
+			<if test="connName != null">
+				#{connName,jdbcType=VARCHAR},
+			</if>
+			<if test="connPhone != null">
+				#{connPhone,jdbcType=VARCHAR},
+			</if>
+			<if test="keyId != null">
+				#{keyId,jdbcType=VARCHAR},
+			</if>
+			<if test="certId != null">
+				#{certId,jdbcType=VARCHAR},
+			</if>
+			<if test="pubKey != null">
+				#{pubKey,jdbcType=VARCHAR},
+			</if>
+			<if test="priKey != null">
+				#{priKey,jdbcType=VARCHAR},
+			</if>
+			<if test="regTime != null">
+				#{regTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="note != null">
+				#{note,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+</mapper>

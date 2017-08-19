@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sdbc.mapper.TQklErrorinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sdbc.pojo.TQklErrorinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="deal_sequence" property="dealSequence" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="deal_time" property="dealTime" jdbcType="TIMESTAMP" />
+    <result column="discovery_time" property="discoveryTime" jdbcType="TIMESTAMP" />
+    <result column="billNo" property="billno" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="isNotice" property="isnotice" jdbcType="INTEGER" />
+    <result column="notice_time" property="noticeTime" jdbcType="TIMESTAMP" />
+    <result column="error_detail" property="errorDetail" jdbcType="INTEGER" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, deal_sequence, channel, deal_time, discovery_time, billNo, type, isNotice, notice_time, 
+    error_detail, note
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_qkl_errorinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_qkl_errorinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdbc.pojo.TQklErrorinfo" >
+    insert into t_qkl_errorinfo (id, deal_sequence, channel, 
+      deal_time, discovery_time, billNo, 
+      type, isNotice, notice_time, 
+      error_detail, note)
+    values (#{id,jdbcType=INTEGER}, #{dealSequence,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, 
+      #{dealTime,jdbcType=TIMESTAMP}, #{discoveryTime,jdbcType=TIMESTAMP}, #{billno,jdbcType=VARCHAR}, 
+      #{type,jdbcType=INTEGER}, #{isnotice,jdbcType=INTEGER}, #{noticeTime,jdbcType=TIMESTAMP}, 
+      #{errorDetail,jdbcType=INTEGER}, #{note,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdbc.pojo.TQklErrorinfo" >
+    insert into t_qkl_errorinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="dealSequence != null" >
+        deal_sequence,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="dealTime != null" >
+        deal_time,
+      </if>
+      <if test="discoveryTime != null" >
+        discovery_time,
+      </if>
+      <if test="billno != null" >
+        billNo,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="isnotice != null" >
+        isNotice,
+      </if>
+      <if test="noticeTime != null" >
+        notice_time,
+      </if>
+      <if test="errorDetail != null" >
+        error_detail,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="dealSequence != null" >
+        #{dealSequence,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="dealTime != null" >
+        #{dealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discoveryTime != null" >
+        #{discoveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billno != null" >
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isnotice != null" >
+        #{isnotice,jdbcType=INTEGER},
+      </if>
+      <if test="noticeTime != null" >
+        #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorDetail != null" >
+        #{errorDetail,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdbc.pojo.TQklErrorinfo" >
+    update t_qkl_errorinfo
+    <set >
+      <if test="dealSequence != null" >
+        deal_sequence = #{dealSequence,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="dealTime != null" >
+        deal_time = #{dealTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="discoveryTime != null" >
+        discovery_time = #{discoveryTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="billno != null" >
+        billNo = #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="isnotice != null" >
+        isNotice = #{isnotice,jdbcType=INTEGER},
+      </if>
+      <if test="noticeTime != null" >
+        notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="errorDetail != null" >
+        error_detail = #{errorDetail,jdbcType=INTEGER},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdbc.pojo.TQklErrorinfo" >
+    update t_qkl_errorinfo
+    set deal_sequence = #{dealSequence,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      deal_time = #{dealTime,jdbcType=TIMESTAMP},
+      discovery_time = #{discoveryTime,jdbcType=TIMESTAMP},
+      billNo = #{billno,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
+      isNotice = #{isnotice,jdbcType=INTEGER},
+      notice_time = #{noticeTime,jdbcType=TIMESTAMP},
+      error_detail = #{errorDetail,jdbcType=INTEGER},
+      note = #{note,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

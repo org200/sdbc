@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sdbc.mapper.TQklCutinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sdbc.pojo.TQklCutinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="billNo" property="billno" jdbcType="VARCHAR" />
+    <result column="otherBillNo" property="otherbillno" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="myFuseBillNo" property="myfusebillno" jdbcType="VARCHAR" />
+    <result column="repaymentAccount" property="repaymentaccount" jdbcType="VARCHAR" />
+    <result column="repaymentName" property="repaymentname" jdbcType="VARCHAR" />
+    <result column="repaymentAmount" property="repaymentamount" jdbcType="DOUBLE" />
+    <result column="otherAmount" property="otheramount" jdbcType="DOUBLE" />
+    <result column="myRepaymentAmount" property="myrepaymentamount" jdbcType="DOUBLE" />
+    <result column="repaymentSequence" property="repaymentsequence" jdbcType="VARCHAR" />
+    <result column="repaymentTimeDate" property="repaymenttimedate" jdbcType="TIMESTAMP" />
+    <result column="repaymentResult" property="repaymentresult" jdbcType="INTEGER" />
+    <result column="repaymentStatus" property="repaymentstatus" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, billNo, otherBillNo, channel, myFuseBillNo, repaymentAccount, repaymentName, 
+    repaymentAmount, otherAmount, myRepaymentAmount, repaymentSequence, repaymentTimeDate, 
+    repaymentResult, repaymentStatus
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_qkl_cutinfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="preview_cutlist" resultMap="BaseResultMap">
+    select * from t_qkl_cutinfo order by id desc limit 5
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_qkl_cutinfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdbc.pojo.TQklCutinfo" >
+    insert into t_qkl_cutinfo (id, billNo, otherBillNo, 
+      channel, myFuseBillNo, repaymentAccount, 
+      repaymentName, repaymentAmount, otherAmount, 
+      myRepaymentAmount, repaymentSequence, repaymentTimeDate, 
+      repaymentResult, repaymentStatus)
+    values (#{id,jdbcType=INTEGER}, #{billno,jdbcType=VARCHAR}, #{otherbillno,jdbcType=VARCHAR}, 
+      #{channel,jdbcType=VARCHAR}, #{myfusebillno,jdbcType=VARCHAR}, #{repaymentaccount,jdbcType=VARCHAR}, 
+      #{repaymentname,jdbcType=VARCHAR}, #{repaymentamount,jdbcType=DOUBLE}, #{otheramount,jdbcType=DOUBLE}, 
+      #{myrepaymentamount,jdbcType=DOUBLE}, #{repaymentsequence,jdbcType=VARCHAR}, #{repaymenttimedate,jdbcType=TIMESTAMP}, 
+      #{repaymentresult,jdbcType=INTEGER}, #{repaymentstatus,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdbc.pojo.TQklCutinfo" >
+    insert into t_qkl_cutinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="billno != null" >
+        billNo,
+      </if>
+      <if test="otherbillno != null" >
+        otherBillNo,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="myfusebillno != null" >
+        myFuseBillNo,
+      </if>
+      <if test="repaymentaccount != null" >
+        repaymentAccount,
+      </if>
+      <if test="repaymentname != null" >
+        repaymentName,
+      </if>
+      <if test="repaymentamount != null" >
+        repaymentAmount,
+      </if>
+      <if test="otheramount != null" >
+        otherAmount,
+      </if>
+      <if test="myrepaymentamount != null" >
+        myRepaymentAmount,
+      </if>
+      <if test="repaymentsequence != null" >
+        repaymentSequence,
+      </if>
+      <if test="repaymenttimedate != null" >
+        repaymentTimeDate,
+      </if>
+      <if test="repaymentresult != null" >
+        repaymentResult,
+      </if>
+      <if test="repaymentstatus != null" >
+        repaymentStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="billno != null" >
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="otherbillno != null" >
+        #{otherbillno,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="myfusebillno != null" >
+        #{myfusebillno,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentaccount != null" >
+        #{repaymentaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentname != null" >
+        #{repaymentname,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentamount != null" >
+        #{repaymentamount,jdbcType=DOUBLE},
+      </if>
+      <if test="otheramount != null" >
+        #{otheramount,jdbcType=DOUBLE},
+      </if>
+      <if test="myrepaymentamount != null" >
+        #{myrepaymentamount,jdbcType=DOUBLE},
+      </if>
+      <if test="repaymentsequence != null" >
+        #{repaymentsequence,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymenttimedate != null" >
+        #{repaymenttimedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaymentresult != null" >
+        #{repaymentresult,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentstatus != null" >
+        #{repaymentstatus,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdbc.pojo.TQklCutinfo" >
+    update t_qkl_cutinfo
+    <set >
+      <if test="billno != null" >
+        billNo = #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="otherbillno != null" >
+        otherBillNo = #{otherbillno,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="myfusebillno != null" >
+        myFuseBillNo = #{myfusebillno,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentaccount != null" >
+        repaymentAccount = #{repaymentaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentname != null" >
+        repaymentName = #{repaymentname,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymentamount != null" >
+        repaymentAmount = #{repaymentamount,jdbcType=DOUBLE},
+      </if>
+      <if test="otheramount != null" >
+        otherAmount = #{otheramount,jdbcType=DOUBLE},
+      </if>
+      <if test="myrepaymentamount != null" >
+        myRepaymentAmount = #{myrepaymentamount,jdbcType=DOUBLE},
+      </if>
+      <if test="repaymentsequence != null" >
+        repaymentSequence = #{repaymentsequence,jdbcType=VARCHAR},
+      </if>
+      <if test="repaymenttimedate != null" >
+        repaymentTimeDate = #{repaymenttimedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="repaymentresult != null" >
+        repaymentResult = #{repaymentresult,jdbcType=INTEGER},
+      </if>
+      <if test="repaymentstatus != null" >
+        repaymentStatus = #{repaymentstatus,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdbc.pojo.TQklCutinfo" >
+    update t_qkl_cutinfo
+    set billNo = #{billno,jdbcType=VARCHAR},
+      otherBillNo = #{otherbillno,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      myFuseBillNo = #{myfusebillno,jdbcType=VARCHAR},
+      repaymentAccount = #{repaymentaccount,jdbcType=VARCHAR},
+      repaymentName = #{repaymentname,jdbcType=VARCHAR},
+      repaymentAmount = #{repaymentamount,jdbcType=DOUBLE},
+      otherAmount = #{otheramount,jdbcType=DOUBLE},
+      myRepaymentAmount = #{myrepaymentamount,jdbcType=DOUBLE},
+      repaymentSequence = #{repaymentsequence,jdbcType=VARCHAR},
+      repaymentTimeDate = #{repaymenttimedate,jdbcType=TIMESTAMP},
+      repaymentResult = #{repaymentresult,jdbcType=INTEGER},
+      repaymentStatus = #{repaymentstatus,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

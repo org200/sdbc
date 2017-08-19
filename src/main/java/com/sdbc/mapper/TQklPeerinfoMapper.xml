@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sdbc.mapper.TQklPeerinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sdbc.pojo.TQklPeerinfo" >
+    <id column="peer_uuid" property="peerUuid" jdbcType="VARCHAR" />
+    <result column="peer_id" property="peerId" jdbcType="VARCHAR" />
+    <result column="peer_name" property="peerName" jdbcType="VARCHAR" />
+    <result column="peer_type" property="peerType" jdbcType="VARCHAR" />
+    <result column="peer_pkiid" property="peerPkiid" jdbcType="VARCHAR" />
+    <result column="peer_desc" property="peerDesc" jdbcType="VARCHAR" />
+    <result column="peer_address" property="peerAddress" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    peer_uuid, peer_id, peer_name, peer_type, peer_pkiid, peer_desc, peer_address
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_qkl_peerinfo
+    where peer_uuid = #{peerUuid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_qkl_peerinfo
+    where peer_uuid = #{peerUuid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sdbc.pojo.TQklPeerinfo" >
+    insert into t_qkl_peerinfo (peer_uuid, peer_id, peer_name, 
+      peer_type, peer_pkiid, peer_desc, 
+      peer_address)
+    values (#{peerUuid,jdbcType=VARCHAR}, #{peerId,jdbcType=VARCHAR}, #{peerName,jdbcType=VARCHAR}, 
+      #{peerType,jdbcType=VARCHAR}, #{peerPkiid,jdbcType=VARCHAR}, #{peerDesc,jdbcType=VARCHAR}, 
+      #{peerAddress,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdbc.pojo.TQklPeerinfo" >
+    insert into t_qkl_peerinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="peerUuid != null" >
+        peer_uuid,
+      </if>
+      <if test="peerId != null" >
+        peer_id,
+      </if>
+      <if test="peerName != null" >
+        peer_name,
+      </if>
+      <if test="peerType != null" >
+        peer_type,
+      </if>
+      <if test="peerPkiid != null" >
+        peer_pkiid,
+      </if>
+      <if test="peerDesc != null" >
+        peer_desc,
+      </if>
+      <if test="peerAddress != null" >
+        peer_address,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="peerUuid != null" >
+        #{peerUuid,jdbcType=VARCHAR},
+      </if>
+      <if test="peerId != null" >
+        #{peerId,jdbcType=VARCHAR},
+      </if>
+      <if test="peerName != null" >
+        #{peerName,jdbcType=VARCHAR},
+      </if>
+      <if test="peerType != null" >
+        #{peerType,jdbcType=VARCHAR},
+      </if>
+      <if test="peerPkiid != null" >
+        #{peerPkiid,jdbcType=VARCHAR},
+      </if>
+      <if test="peerDesc != null" >
+        #{peerDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="peerAddress != null" >
+        #{peerAddress,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdbc.pojo.TQklPeerinfo" >
+    update t_qkl_peerinfo
+    <set >
+      <if test="peerId != null" >
+        peer_id = #{peerId,jdbcType=VARCHAR},
+      </if>
+      <if test="peerName != null" >
+        peer_name = #{peerName,jdbcType=VARCHAR},
+      </if>
+      <if test="peerType != null" >
+        peer_type = #{peerType,jdbcType=VARCHAR},
+      </if>
+      <if test="peerPkiid != null" >
+        peer_pkiid = #{peerPkiid,jdbcType=VARCHAR},
+      </if>
+      <if test="peerDesc != null" >
+        peer_desc = #{peerDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="peerAddress != null" >
+        peer_address = #{peerAddress,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where peer_uuid = #{peerUuid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdbc.pojo.TQklPeerinfo" >
+    update t_qkl_peerinfo
+    set peer_id = #{peerId,jdbcType=VARCHAR},
+      peer_name = #{peerName,jdbcType=VARCHAR},
+      peer_type = #{peerType,jdbcType=VARCHAR},
+      peer_pkiid = #{peerPkiid,jdbcType=VARCHAR},
+      peer_desc = #{peerDesc,jdbcType=VARCHAR},
+      peer_address = #{peerAddress,jdbcType=VARCHAR}
+    where peer_uuid = #{peerUuid,jdbcType=VARCHAR}
+  </update>
+</mapper>

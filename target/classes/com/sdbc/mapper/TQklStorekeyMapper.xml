@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sdbc.mapper.TQklStorekeyMapper" >
+  <resultMap id="BaseResultMap" type="com.sdbc.pojo.TQklStorekey" >
+    <id column="key_id" property="keyId" jdbcType="VARCHAR" />
+    <result column="bank_id" property="bankId" jdbcType="VARCHAR" />
+    <result column="key_info" property="keyInfo" jdbcType="VARCHAR" />
+    <result column="key_version" property="keyVersion" jdbcType="VARCHAR" />
+    <result column="key_url" property="keyUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    key_id, bank_id, key_info, key_version, key_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_qkl_storekey
+    where key_id = #{keyId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_qkl_storekey
+    where key_id = #{keyId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.sdbc.pojo.TQklStorekey" >
+    insert into t_qkl_storekey (key_id, bank_id, key_info, 
+      key_version, key_url)
+    values (#{keyId,jdbcType=VARCHAR}, #{bankId,jdbcType=VARCHAR}, #{keyInfo,jdbcType=VARCHAR}, 
+      #{keyVersion,jdbcType=VARCHAR}, #{keyUrl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdbc.pojo.TQklStorekey" >
+    insert into t_qkl_storekey
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="keyId != null" >
+        key_id,
+      </if>
+      <if test="bankId != null" >
+        bank_id,
+      </if>
+      <if test="keyInfo != null" >
+        key_info,
+      </if>
+      <if test="keyVersion != null" >
+        key_version,
+      </if>
+      <if test="keyUrl != null" >
+        key_url,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="keyId != null" >
+        #{keyId,jdbcType=VARCHAR},
+      </if>
+      <if test="bankId != null" >
+        #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="keyInfo != null" >
+        #{keyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="keyVersion != null" >
+        #{keyVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="keyUrl != null" >
+        #{keyUrl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdbc.pojo.TQklStorekey" >
+    update t_qkl_storekey
+    <set >
+      <if test="bankId != null" >
+        bank_id = #{bankId,jdbcType=VARCHAR},
+      </if>
+      <if test="keyInfo != null" >
+        key_info = #{keyInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="keyVersion != null" >
+        key_version = #{keyVersion,jdbcType=VARCHAR},
+      </if>
+      <if test="keyUrl != null" >
+        key_url = #{keyUrl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where key_id = #{keyId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdbc.pojo.TQklStorekey" >
+    update t_qkl_storekey
+    set bank_id = #{bankId,jdbcType=VARCHAR},
+      key_info = #{keyInfo,jdbcType=VARCHAR},
+      key_version = #{keyVersion,jdbcType=VARCHAR},
+      key_url = #{keyUrl,jdbcType=VARCHAR}
+    where key_id = #{keyId,jdbcType=VARCHAR}
+  </update>
+</mapper>

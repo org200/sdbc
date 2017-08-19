@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sdbc.mapper.TQklLoaninfoMapper" >
+  <resultMap id="BaseResultMap" type="com.sdbc.pojo.TQklLoaninfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="billNo" property="billno" jdbcType="VARCHAR" />
+    <result column="otherBillNo" property="otherbillno" jdbcType="VARCHAR" />
+    <result column="myFuseBillNo" property="myfusebillno" jdbcType="VARCHAR" />
+    <result column="channel" property="channel" jdbcType="VARCHAR" />
+    <result column="collectionAccount" property="collectionaccount" jdbcType="VARCHAR" />
+    <result column="collectionName" property="collectionname" jdbcType="VARCHAR" />
+    <result column="loanAmount" property="loanamount" jdbcType="DOUBLE" />
+    <result column="otherLoanAmount" property="otherloanamount" jdbcType="DOUBLE" />
+    <result column="myLoanAmount" property="myloanamount" jdbcType="DOUBLE" />
+    <result column="dealSequence" property="dealsequence" jdbcType="VARCHAR" />
+    <result column="loanTimeDate" property="loantimedate" jdbcType="TIMESTAMP" />
+    <result column="loanResult" property="loanresult" jdbcType="INTEGER" />
+    <result column="loanStatus" property="loanstatus" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, billNo, otherBillNo, myFuseBillNo, channel, collectionAccount, collectionName, 
+    loanAmount, otherLoanAmount, myLoanAmount, dealSequence, loanTimeDate, loanResult, 
+    loanStatus
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_qkl_loaninfo
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="previewloanlist" resultMap="BaseResultMap">
+    select * from t_qkl_loaninfo order by id desc limit 5
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_qkl_loaninfo
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.sdbc.pojo.TQklLoaninfo" >
+    insert into t_qkl_loaninfo (id, billNo, otherBillNo, 
+      myFuseBillNo, channel, collectionAccount, 
+      collectionName, loanAmount, otherLoanAmount, 
+      myLoanAmount, dealSequence, loanTimeDate, 
+      loanResult, loanStatus)
+    values (#{id,jdbcType=INTEGER}, #{billno,jdbcType=VARCHAR}, #{otherbillno,jdbcType=VARCHAR}, 
+      #{myfusebillno,jdbcType=VARCHAR}, #{channel,jdbcType=VARCHAR}, #{collectionaccount,jdbcType=VARCHAR}, 
+      #{collectionname,jdbcType=VARCHAR}, #{loanamount,jdbcType=DOUBLE}, #{otherloanamount,jdbcType=DOUBLE}, 
+      #{myloanamount,jdbcType=DOUBLE}, #{dealsequence,jdbcType=VARCHAR}, #{loantimedate,jdbcType=TIMESTAMP}, 
+      #{loanresult,jdbcType=INTEGER}, #{loanstatus,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdbc.pojo.TQklLoaninfo" >
+    insert into t_qkl_loaninfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="billno != null" >
+        billNo,
+      </if>
+      <if test="otherbillno != null" >
+        otherBillNo,
+      </if>
+      <if test="myfusebillno != null" >
+        myFuseBillNo,
+      </if>
+      <if test="channel != null" >
+        channel,
+      </if>
+      <if test="collectionaccount != null" >
+        collectionAccount,
+      </if>
+      <if test="collectionname != null" >
+        collectionName,
+      </if>
+      <if test="loanamount != null" >
+        loanAmount,
+      </if>
+      <if test="otherloanamount != null" >
+        otherLoanAmount,
+      </if>
+      <if test="myloanamount != null" >
+        myLoanAmount,
+      </if>
+      <if test="dealsequence != null" >
+        dealSequence,
+      </if>
+      <if test="loantimedate != null" >
+        loanTimeDate,
+      </if>
+      <if test="loanresult != null" >
+        loanResult,
+      </if>
+      <if test="loanstatus != null" >
+        loanStatus,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="billno != null" >
+        #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="otherbillno != null" >
+        #{otherbillno,jdbcType=VARCHAR},
+      </if>
+      <if test="myfusebillno != null" >
+        #{myfusebillno,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionaccount != null" >
+        #{collectionaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionname != null" >
+        #{collectionname,jdbcType=VARCHAR},
+      </if>
+      <if test="loanamount != null" >
+        #{loanamount,jdbcType=DOUBLE},
+      </if>
+      <if test="otherloanamount != null" >
+        #{otherloanamount,jdbcType=DOUBLE},
+      </if>
+      <if test="myloanamount != null" >
+        #{myloanamount,jdbcType=DOUBLE},
+      </if>
+      <if test="dealsequence != null" >
+        #{dealsequence,jdbcType=VARCHAR},
+      </if>
+      <if test="loantimedate != null" >
+        #{loantimedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanresult != null" >
+        #{loanresult,jdbcType=INTEGER},
+      </if>
+      <if test="loanstatus != null" >
+        #{loanstatus,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.sdbc.pojo.TQklLoaninfo" >
+    update t_qkl_loaninfo
+    <set >
+      <if test="billno != null" >
+        billNo = #{billno,jdbcType=VARCHAR},
+      </if>
+      <if test="otherbillno != null" >
+        otherBillNo = #{otherbillno,jdbcType=VARCHAR},
+      </if>
+      <if test="myfusebillno != null" >
+        myFuseBillNo = #{myfusebillno,jdbcType=VARCHAR},
+      </if>
+      <if test="channel != null" >
+        channel = #{channel,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionaccount != null" >
+        collectionAccount = #{collectionaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="collectionname != null" >
+        collectionName = #{collectionname,jdbcType=VARCHAR},
+      </if>
+      <if test="loanamount != null" >
+        loanAmount = #{loanamount,jdbcType=DOUBLE},
+      </if>
+      <if test="otherloanamount != null" >
+        otherLoanAmount = #{otherloanamount,jdbcType=DOUBLE},
+      </if>
+      <if test="myloanamount != null" >
+        myLoanAmount = #{myloanamount,jdbcType=DOUBLE},
+      </if>
+      <if test="dealsequence != null" >
+        dealSequence = #{dealsequence,jdbcType=VARCHAR},
+      </if>
+      <if test="loantimedate != null" >
+        loanTimeDate = #{loantimedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loanresult != null" >
+        loanResult = #{loanresult,jdbcType=INTEGER},
+      </if>
+      <if test="loanstatus != null" >
+        loanStatus = #{loanstatus,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.sdbc.pojo.TQklLoaninfo" >
+    update t_qkl_loaninfo
+    set billNo = #{billno,jdbcType=VARCHAR},
+      otherBillNo = #{otherbillno,jdbcType=VARCHAR},
+      myFuseBillNo = #{myfusebillno,jdbcType=VARCHAR},
+      channel = #{channel,jdbcType=VARCHAR},
+      collectionAccount = #{collectionaccount,jdbcType=VARCHAR},
+      collectionName = #{collectionname,jdbcType=VARCHAR},
+      loanAmount = #{loanamount,jdbcType=DOUBLE},
+      otherLoanAmount = #{otherloanamount,jdbcType=DOUBLE},
+      myLoanAmount = #{myloanamount,jdbcType=DOUBLE},
+      dealSequence = #{dealsequence,jdbcType=VARCHAR},
+      loanTimeDate = #{loantimedate,jdbcType=TIMESTAMP},
+      loanResult = #{loanresult,jdbcType=INTEGER},
+      loanStatus = #{loanstatus,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

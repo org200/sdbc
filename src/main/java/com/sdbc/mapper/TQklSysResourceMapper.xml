@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.sdbc.dao.MenuDao" >
+  <resultMap id="BaseResultMap" type="com.sdbc.pojo.TQklSysResource" >
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="mid" property="mid" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="menu_level" property="menuLevel" jdbcType="INTEGER" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="resource_id" property="resourceId" jdbcType="VARCHAR" />
+  </resultMap>
+<!--    <select id="MenuList" resultMap="BaseResultMap">  
+        SELECT * FROM t_qkl_sys_resource WHERE menu_level= #{menu_level}
+   </select>  -->
+        <select id="midByTypeId" parameterType="java.lang.Integer" resultMap="BaseResultMap">  
+        SELECT * FROM t_qkl_sys_typeresource where typeid=#{typeid,jdbcType=INTEGER}
+   </select> 
+    
+    <delete id="deleteMid" parameterType="java.lang.Integer">
+		delete from
+		t_qkl_sys_typeresource
+		where typeid = #{typeid,jdbcType=INTEGER}
+	</delete>
+    
+    <select id="allMenulist" resultMap="BaseResultMap">
+     SELECT * FROM t_qkl_sys_resource 
+    </select>
+    
+    <select id="MenuList" resultMap="BaseResultMap">
+
+	SELECT b.* from (
+	SELECT a.* from (
+	SELECT
+	t_qkl_sys_resource.*,
+	t_qkl_sys_typeresource.typeid
+	FROM
+	t_qkl_sys_resource
+	INNER JOIN t_qkl_sys_typeresource ON t_qkl_sys_resource.mid =
+	t_qkl_sys_typeresource.resource_id
+	) a WHERE menu_level=#{0}
+	) b WHERE  typeid=#{1}
+    
+   
+   </select> 
+ 	<select id="allMenuList" resultMap="BaseResultMap">
+	SELECT * FROM t_qkl_sys_resource
+   </select> 
+ 	<select id="MenuList_typeid" resultMap="BaseResultMap">
+	SELECT b.* from (
+	SELECT
+	t_qkl_sys_resource.*,
+	t_qkl_sys_typeresource.typeid
+	FROM
+	t_qkl_sys_resource
+	INNER JOIN t_qkl_sys_typeresource ON t_qkl_sys_resource.mid =
+	t_qkl_sys_typeresource.resource_id
+	) b WHERE  typeid=#{1}
+   </select> 
+ 
+
+   <insert id="insertMidTypeid" parameterType="com.sdbc.pojo.TQklSysResource" >
+    insert into t_qkl_sys_typeresource (resource_id,typeid )
+    values (#{0,jdbcType=VARCHAR}, #{1,jdbcType=INTEGER})
+  </insert>
+ 
+
+  <insert id="insert" parameterType="com.sdbc.pojo.TQklSysResource" >
+    insert into t_qkl_sys_resource (name, mid, pid, 
+      url, note, menu_level
+      )
+    values (#{name,jdbcType=VARCHAR}, #{mid,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
+      #{url,jdbcType=VARCHAR}, #{note,jdbcType=VARCHAR}, #{menuLevel,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.sdbc.pojo.TQklSysResource" >
+    insert into t_qkl_sys_resource
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="mid != null" >
+        mid,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="url != null" >
+        url,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="menuLevel != null" >
+        menu_level,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="mid != null" >
+        #{mid,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="url != null" >
+        #{url,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="menuLevel != null" >
+        #{menuLevel,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
