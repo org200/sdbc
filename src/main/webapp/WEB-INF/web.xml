@@ -53,7 +53,7 @@
     </context-param>  
     <listener>  
         <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>  
-    </listener>  
+    </listener>
    
     <listener>  
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>  
@@ -66,7 +66,7 @@
         <init-param>  
             <param-name>contextConfigLocation</param-name>  
             <!--spingMVC的配置路径  -->  
-            <param-value>classpath:spring-mvc.xml</param-value>  
+            <param-value>classpath:spring-mvc.xml,classpath:quartz.xml</param-value>  
         </init-param>  
         <load-on-startup>1</load-on-startup>  
     </servlet>  
@@ -77,19 +77,19 @@
     </servlet-mapping>  
    
     <!-- 错误跳转页面 -->  
-    <error-page>  
-        <!-- 路径不正确 -->  
+    <!-- <error-page>  
+        路径不正确  
         <error-code>404</error-code>  
         <location>/WEB-INF/errorpage/404.jsp</location>  
     </error-page>  
     <error-page>  
-        <!-- 没有访问权限，访问被禁止 -->  
+        没有访问权限，访问被禁止  
         <error-code>405</error-code>  
         <location>/WEB-INF/errorpage/405.jsp</location>  
     </error-page>  
     <error-page>  
-        <!-- 内部错误 -->  
+        内部错误  
         <error-code>500</error-code>  
         <location>/WEB-INF/errorpage/500.jsp</location>  
-    </error-page>  
+    </error-page>   -->
 </web-app>  
