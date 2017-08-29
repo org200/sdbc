@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sdbc.mapper.TQklCutinfoMapper" >
+<mapper namespace="com.sdbc.dao.PaymentQueryDao" >
   <resultMap id="BaseResultMap" type="com.sdbc.pojo.TQklCutinfo" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="billNo" property="billno" jdbcType="VARCHAR" />
@@ -31,11 +31,24 @@
   <select id="preview_cutlist" resultMap="BaseResultMap">
     select * from t_qkl_cutinfo order by id desc limit 5
   </select>
+  <select id="cutlist_search" resultMap="BaseResultMap">
+    select * from t_qkl_cutinfo where channel like "%#{0}%" and billNo like "%#{1}%" order by id desc limit #{4},#{5}
+  </select>
+  <select id="get_CutCount" resultType="java.lang.Integer">
+    select count(*) from t_qkl_cutinfo where channel like concat(concat('%',#{0},'%')) and billNo like concat(concat('%',#{1},'%'))
+  </select>
+  <select id="cutlist" resultMap="BaseResultMap">
+    select * from t_qkl_cutinfo where channel like "%#{channel}%" and billNo like "%#{billNO}%" order by id desc limit #{offset},#{size}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_qkl_cutinfo
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.sdbc.pojo.TQklCutinfo" >
+  <selectKey resultType="int" keyProperty="id" order="BEFORE">
+   		select cutinfo_seq.nextVal
+   		from dual
+  		</selectKey>
     insert into t_qkl_cutinfo (id, billNo, otherBillNo, 
       channel, myFuseBillNo, repaymentAccount, 
       repaymentName, repaymentAmount, otherAmount, 

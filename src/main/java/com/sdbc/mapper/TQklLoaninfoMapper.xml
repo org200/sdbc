@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.sdbc.mapper.TQklLoaninfoMapper" >
+<mapper namespace="com.sdbc.dao.LendQueryDao" >
   <resultMap id="BaseResultMap" type="com.sdbc.pojo.TQklLoaninfo" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="billNo" property="billno" jdbcType="VARCHAR" />
@@ -31,11 +31,21 @@
   <select id="previewloanlist" resultMap="BaseResultMap">
     select * from t_qkl_loaninfo order by id desc limit 5
   </select>
+  <select id="loanlist_search" resultMap="BaseResultMap">
+    select * from t_qkl_loaninfo where channel like "%#{0}%" and billNo like "%#{1}%" order by id desc limit #{4},#{5}
+  </select>
+  <select id="get_LoanCount" resultMap="java.lang.Integer">
+    select count(*) from t_qkl_loaninfo where channel like "%#{0}%" and billNo like "%#{1}%" order by id desc limit #{4},#{5}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from t_qkl_loaninfo
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.sdbc.pojo.TQklLoaninfo" >
+  	<selectKey resultType="int" keyProperty="id" order="BEFORE">
+   		select loaninfo_seq.nextVal
+   		from dual
+  		</selectKey>
     insert into t_qkl_loaninfo (id, billNo, otherBillNo, 
       myFuseBillNo, channel, collectionAccount, 
       collectionName, loanAmount, otherLoanAmount, 

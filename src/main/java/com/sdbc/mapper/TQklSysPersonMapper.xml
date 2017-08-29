@@ -11,10 +11,12 @@
 		<result column="typename" jdbcType="VARCHAR" property="typename" />
 	</resultMap>
 	<select id="selectUserByName" parameterType="String" resultMap="BaseResultMap">
-		SELECT * FROM t_qkl_sys_person WHERE username = #{username}
+		SELECT t.username,t.userpasswd FROM t_qkl_sys_person t WHERE
+		t.username = #{username}
 	</select>
 	<select id="selectById" parameterType="String" resultMap="BaseResultMap">
-		SELECT * FROM t_qkl_sys_person WHERE userid = #{id}
+		SELECT
+		* FROM t_qkl_sys_person WHERE userid = #{id}
 	</select>
 	<select id="userlist" parameterType="String" resultMap="BaseResultMap">
 		SELECT
@@ -40,22 +42,24 @@
 	</select>
 	<insert id="insertUser" parameterType="com.sdbc.pojo.TQklSysPerson">
 		<selectKey resultType="int" keyProperty="userid" order="BEFORE">
-   		select user_seq.nextVal
-   		from dual
-  		</selectKey>
+			select user_seq.nextVal
+			from dual
+		</selectKey>
 		insert into
 		t_qkl_sys_person (userid, username, typeid,
-		status, userpasswd, bank_id
+		status,
+		userpasswd, bank_id
 		)
-		values (#{userid,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR},
+		values (#{userid,jdbcType=INTEGER},
+		#{username,jdbcType=VARCHAR},
 		#{typeid,jdbcType=INTEGER},
 		#{status,jdbcType=INTEGER},
-		#{userpasswd,jdbcType=VARCHAR}, #{bank_id,jdbcType=VARCHAR}
+		#{userpasswd,jdbcType=VARCHAR},
+		#{bank_id,jdbcType=VARCHAR}
 		)
 	</insert>
 
-	<select id="unique_username" parameterType="java.lang.Integer"
-		resultType="java.lang.Integer">
+	<select id="unique_username" parameterType="String" resultType="java.lang.Integer">
 		select count(*) from t_qkl_sys_person a where
 		a.username=#{username}
 	</select>
@@ -71,15 +75,18 @@
 		where userid =
 		#{userid,jdbcType=INTEGER}
 	</update>
-		<update id="modifyUserRole" parameterType="com.sdbc.pojo.TQklSysPerson">
-		update t_qkl_sys_person
+	<update id="modifyUserRole" parameterType="com.sdbc.pojo.TQklSysPerson">
+		update
+		t_qkl_sys_person
 		set typeid = #{typeid,jdbcType=INTEGER}
 		where userid =
 		#{userid,jdbcType=INTEGER}
 	</update>
 	<update id="resetUser" parameterType="com.sdbc.pojo.TQklSysPerson">
 		update t_qkl_sys_person
-		set userpasswd = #{userpasswd,jdbcType=VARCHAR}
-		where userid = #{userid,jdbcType=INTEGER}
+		set
+		userpasswd = #{userpasswd,jdbcType=VARCHAR}
+		where userid =
+		#{userid,jdbcType=INTEGER}
 	</update>
 </mapper>
