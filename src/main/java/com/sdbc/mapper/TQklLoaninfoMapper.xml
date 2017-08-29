@@ -17,7 +17,7 @@
     <result column="loanResult" property="loanresult" jdbcType="INTEGER" />
     <result column="loanStatus" property="loanstatus" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List" >
+ <!--  <sql id="Base_Column_List" >
     id, billNo, otherBillNo, myFuseBillNo, channel, collectionAccount, collectionName, 
     loanAmount, otherLoanAmount, myLoanAmount, dealSequence, loanTimeDate, loanResult, 
     loanStatus
@@ -209,5 +209,5 @@
       loanResult = #{loanresult,jdbcType=INTEGER},
       loanStatus = #{loanstatus,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
-  </update>
+  </update> -->
 </mapper>

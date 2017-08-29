@@ -17,7 +17,7 @@
     <result column="repaymentResult" property="repaymentresult" jdbcType="INTEGER" />
     <result column="repaymentStatus" property="repaymentstatus" jdbcType="INTEGER" />
   </resultMap>
-  <sql id="Base_Column_List" >
+<!--   <sql id="Base_Column_List" >
     id, billNo, otherBillNo, channel, myFuseBillNo, repaymentAccount, repaymentName, 
     repaymentAmount, otherAmount, myRepaymentAmount, repaymentSequence, repaymentTimeDate, 
     repaymentResult, repaymentStatus
@@ -212,5 +212,5 @@
       repaymentResult = #{repaymentresult,jdbcType=INTEGER},
       repaymentStatus = #{repaymentstatus,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
-  </update>
+  </update> -->
 </mapper>

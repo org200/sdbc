@@ -17,7 +17,7 @@
     <result column="error_sum" property="errorSum" jdbcType="DOUBLE" />
     <result column="note" property="note" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List" >
+ <!--  <sql id="Base_Column_List" >
     id, channel, type, save_date, save_time, interval, loan_num, loan_sum, js_loan_sum, 
     co_loan_sum, register_num, error_num, error_sum, note
   </sql>
@@ -195,5 +195,5 @@
       error_sum = #{errorSum,jdbcType=DOUBLE},
       note = #{note,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
-  </update>
+  </update> -->
 </mapper>

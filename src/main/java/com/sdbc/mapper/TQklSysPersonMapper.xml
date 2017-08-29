@@ -11,8 +11,8 @@
 		<result column="typename" jdbcType="VARCHAR" property="typename" />
 	</resultMap>
 	<select id="selectUserByName" parameterType="String" resultMap="BaseResultMap">
-		SELECT t.username,t.userpasswd FROM t_qkl_sys_person t WHERE
-		t.username = #{username}
+		SELECT * FROM t_qkl_sys_person  WHERE
+		username = #{username}
 	</select>
 	<select id="selectById" parameterType="String" resultMap="BaseResultMap">
 		SELECT

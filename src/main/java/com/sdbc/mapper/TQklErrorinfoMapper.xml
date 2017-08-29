@@ -14,7 +14,7 @@
     <result column="error_detail" property="errorDetail" jdbcType="INTEGER" />
     <result column="note" property="note" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Base_Column_List" >
+ <!--  <sql id="Base_Column_List" >
     id, deal_sequence, channel, deal_time, discovery_time, billNo, type, isNotice, notice_time, 
     error_detail, note
   </sql>
@@ -166,5 +166,5 @@
       error_detail = #{errorDetail,jdbcType=INTEGER},
       note = #{note,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
-  </update>
+  </update> -->
 </mapper>
