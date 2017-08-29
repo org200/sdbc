@@ -2,6 +2,8 @@ package com.sdbc.service.impl;
 
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,9 +13,9 @@ import com.sdbc.service.UserManageService;
 
 @Service
 public class UserManageServiceImpl implements UserManageService {
+	
 	@Autowired
 	private UserManageDao umd;
-
 	@Override
 	public List<TQklSysPerson> userlist() {
 
@@ -23,18 +25,13 @@ public class UserManageServiceImpl implements UserManageService {
 	@Override
 	public boolean validateUser(String username, String passwd) {
 		System.out.println(username);
-		System.out.println(passwd);
 		TQklSysPerson user = umd.selectUserByName(username);
-		System.out.println(user);
-		System.out.println(username + "*****" + user.getUserpasswd());
 		boolean ret = username.equals(user.getUsername()) && passwd.equals(user.getUserpasswd());
-		System.out.println(ret);
 		if (ret == false) {
 			return false;
 		} else {
 			return true;
 		}
-
 	}
 
 	@Override

@@ -25,7 +25,7 @@ public class LoginController {
 	@Resource
 	private MenuService ms;
 	@RequestMapping(value = "index")
-	public String login(TQklSysPerson user, Model m, HttpServletRequest request,HttpSession session) throws Exception {
+	public String login(TQklSysPerson user,HttpSession session){
 		boolean flag;
 		// HttpSession session=request.getSession();
 		// 判断用户名和密码是否正确

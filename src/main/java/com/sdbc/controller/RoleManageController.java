@@ -36,8 +36,6 @@ import com.sdbc.service.RightManageService;
 
 import com.sdbc.service.RoleManageService;
 
-import net.sf.json.JSONArray;
-
 //角色管理
 @Controller
 @RequestMapping("/sm/")
@@ -86,13 +84,13 @@ public class RoleManageController {
 	
 
 	@RequestMapping(value = "giveresource")
-	public String giveresource(Integer typeid,String typename,Model model,HttpServletRequest request,HttpSession session) throws UnsupportedEncodingException{
-		String ip_addr="";
+	public String giveresource(Integer typeid,String typename,Model model){
+		/*String ip_addr="";
 		 if (request.getHeader("x-forwarded-for") == null) {
 			 ip_addr= request.getRemoteAddr();
 			  }else{
 				  ip_addr=request.getHeader("x-forwarded-for");
-			  }
+			  }*/
 		//角色授权
 		//String name=new String(typename.getBytes("ISO-8859-1"),"utf-8");
 		 String name = "typename";

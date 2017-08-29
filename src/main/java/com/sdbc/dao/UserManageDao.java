@@ -4,9 +4,9 @@ import java.util.List;
 
 import com.sdbc.pojo.TQklSysPerson;
 
-public interface UserManageDao {
+public interface UserManageDao{
+	public TQklSysPerson selectUserByName(String username);  
 	public List<TQklSysPerson> userlist();
-	public TQklSysPerson selectUserByName(String  username);  
 	public boolean insertUser(TQklSysPerson user);
 	public int unique_username(String username);
 	public void deleteUser(int userid);
