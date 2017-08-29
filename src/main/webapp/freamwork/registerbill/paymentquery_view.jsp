@@ -143,16 +143,16 @@ function search() {
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${oploglist}" var="oploglist">
+								<c:forEach items="${cutlist}" var="cutlist">
 									<tr>
-										<%-- <td>${oploglist.id}</td> --%>
+										<%-- <td>${.id}</td> --%>
 										<td
 											style="text-overflow: ellipsis; white-space: nowrap; overflow: hidden;"><span
-												class="tooltip-show" title="${oploglist.biz_sequence_id}"
-												style="color: #4b0df2"> ${oploglist.biz_sequence_id}
+												class="tooltip-show" title="${cutlist.biz_sequence_id}"
+												style="color: #4b0df2"> ${cutlist.biz_sequence_id}
 											</span></td>
 										<td></td>
-										<td class="center hidden-phone">${oploglist.req_time}</td>
+										<td class="center hidden-phone">${cutlist.req_time}</td>
 										<td class="center hidden-phone"></td>
 										<td class="center hidden-phone">></td>
 										<td class="center hidden-phone"></td>
@@ -162,7 +162,7 @@ function search() {
 						</table>
 
 						<div>
-						<c:if test="${empty oploglist}"><label style="color: red">查询结果为空</label></c:if>
+						<c:if test="${empty cutlist}"><label style="color: red">查询结果为空</label></c:if>
 							<table align="right">
 								<tr>
 									<td colspan="6" align="right">共${page.totalRecords}条记录

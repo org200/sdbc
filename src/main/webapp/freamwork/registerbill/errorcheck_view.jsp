@@ -64,8 +64,6 @@ footer {
 function search() {
 	var args1 = document.getElementById("args1").value;
 	var args2 = document.getElementById("args2").value;
-	var args3 = document.getElementById("args3").value;
-	var args4 = document.getElementById("args4").value;
 	var starttime = document.getElementById("starttime").value;
 	var endtime = document.getElementById("endtime").value;
 	var start = new Date(document.getElementById("starttime").value);
@@ -77,8 +75,7 @@ function search() {
 		alert("开始时间不能大于结束时间!");
 	} else
 		window.location.href = "search?logtype=3&args1=" + args1
-				+ "&args2=" + args2 + "&args3=" + args3 + "&args4="
-				+ args4 + "&starttime=" + starttime + "&endtime="
+				+ "&args2=" + args2 + "&starttime=" + starttime + "&endtime="
 				+ endtime;
 }
 </SCRIPT>		
