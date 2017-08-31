@@ -13,7 +13,7 @@ public class SimpleServerHandler extends ChannelInboundHandlerAdapter {
         byte[] result1 = new byte[result.readableBytes()];  
         result.readBytes(result1);  
         String resultStr = new String(result1,"UTF-8");  
-        System.out.println("Client said:" + resultStr); 
+        System.out.println("-----------------------------------Client said:" + resultStr); 
         //处理返回数据，根据类型执行相应操作
         result.release();  
   
