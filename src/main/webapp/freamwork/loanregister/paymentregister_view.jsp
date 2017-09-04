@@ -47,13 +47,11 @@ footer {
 
 .col-lr-3 {
 	margin-top: 5px;
-	width: 200px;
 }
 
 .col-lr-1 {
 	margin-left: 10px;
 	margin-top: 5px;
-	width: 120px;
 }
 
 .table-lr-1 {
@@ -82,6 +80,9 @@ footer {
 			form.billNo.focus();
 			return false;
 		}
+
+		var d = document.getElementById('result');
+		d.innerHTML = "还款登记请求成功";
 		return true;
 	}
 </SCRIPT>
@@ -217,7 +218,7 @@ footer {
 								<td><div class="col-lr-3">&nbsp;</div></td>
 								<td><div class="col-lr-1">&nbsp;</div></td>
 								<td><div class="col-lr-3" align="right"
-										style="padding-bottom: 10px">
+										style="padding-bottom: 10px;margin-right:10px;" >
 										<input class="price-button" type="submit" value="提交">
 									</div>
 									</div></td>
@@ -237,9 +238,7 @@ footer {
 						</table>
 
 						<div>
-							<c:if test="${empty oploglist}">
-								<label style="color: red">还款登记失败</label>
-							</c:if>
+								<label id="result"></label>
 						</div>
 					</div>
 				</div>

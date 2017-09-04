@@ -49,7 +49,7 @@ public class SimpleServer {
         }  
     }  
       
-    public static void main(String[] args) throws Exception {  
-        new SimpleServer(9990).run();  
-    }  
+//    public static void main(String[] args) throws Exception {  
+//        new SimpleServer(9990).run();  
+//    }  
 }  
