@@ -69,7 +69,7 @@ public class PayMentRegisterController {
 
 
 		SimpleClient client = new SimpleClient();
-		client.connect(value_paymentregister, "172.16.10.12", 18008);
+		client.connect(value_paymentregister, "172.16.10.249", 18008);
 		return "/freamwork/loanregister/lendregister_view";
 	}
 	

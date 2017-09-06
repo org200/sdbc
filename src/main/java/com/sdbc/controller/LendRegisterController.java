@@ -71,7 +71,7 @@ public class LendRegisterController {
 
 
 		SimpleClient client = new SimpleClient();
-		client.connect(value_lendregister, "172.16.10.12", 18008);
+		client.connect(value_lendregister, "172.16.10.249", 18008);
 		return "/freamwork/loanregister/lendregister_view";
 	}
 	

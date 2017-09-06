@@ -20,13 +20,13 @@ public class SimpleServerHandler extends ChannelInboundHandlerAdapter {
 
 		File loanRegisterlog = new File("D://fabric-java-sdk//loanregisterlog.txt");
 //		File loanRegisterlog = new File("/sdbc/doc/loanregisterlog");
-//		if (!loanRegisterlog.exists()) {// 如果文件不存在,则新建.
-//			File parentDir = new File(loanRegisterlog.getParent());
-//			if (!parentDir.exists()) {// 如果所在目录不存在,则新建.
-//				parentDir.mkdirs();
-//			}
-//			loanRegisterlog.createNewFile();
-//		}
+		if (!loanRegisterlog.exists()) {// 如果文件不存在,则新建.
+			File parentDir = new File(loanRegisterlog.getParent());
+			if (!parentDir.exists()) {// 如果所在目录不存在,则新建.
+				parentDir.mkdirs();
+			}
+			loanRegisterlog.createNewFile();
+		}
 		FileWriter writer = new FileWriter(loanRegisterlog);
 		writer.write(resultStr);
 		writer.close();

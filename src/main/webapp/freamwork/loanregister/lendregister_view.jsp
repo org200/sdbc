@@ -241,7 +241,7 @@ footer {
 
 						<div>
 
-							<label id="result">借款登记失败</label>
+							<label id="result"></label>
 
 						</div>
 					</div>
